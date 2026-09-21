@@ -147,7 +147,7 @@ def inbox_summary(identity: Identity, graph_access_token: str | None, top: int) 
     settings = get_settings()
     enabled_rules = settings_service.enabled_evaluated_exclusion_rule_ids()
 
-    if graph_access_token and settings.data_source == "microsoft":
+    if graph_access_token and settings.outlook_live_inbox:
         from app.integrations.microsoft import graph_client
 
         try:
@@ -160,8 +160,8 @@ def inbox_summary(identity: Identity, graph_access_token: str | None, top: int) 
 
     employee_id = identity.employee_id or gen.ALEX_ID
     messages = _mock_inbox_messages(employee_id)
-    if settings.data_source != "microsoft":
-        note = "Microsoft Graph is not configured yet (DATA_SOURCE=mock) — showing this employee's SpikeOS mock inbox."
+    if not settings.outlook_live_inbox:
+        note = "Live inbox mode is off (OUTLOOK_LIVE_INBOX=false) - showing this employee's SpikeOS mock inbox."
     elif not graph_access_token:
         note = "No Microsoft Graph token was supplied — showing this employee's SpikeOS mock inbox instead."
     else:

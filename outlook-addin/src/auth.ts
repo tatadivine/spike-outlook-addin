@@ -19,7 +19,10 @@ let msalApp: IPublicClientApplication | null = null;
  * inbox in that case, never to fabricated data pretending to be real.
  */
 export async function getGraphAccessToken(): Promise<string | null> {
-  if (!clientId || !tenantId) return null;
+  if (!clientId || !tenantId) {
+    console.warn("[SpikeOS] VITE_MICROSOFT_CLIENT_ID / VITE_MICROSOFT_TENANT_ID not set at build time. ");
+    return null;
+  };
 
   try {
     if (!msalApp) {

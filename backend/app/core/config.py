@@ -37,6 +37,13 @@ class Settings(BaseSettings):
     # "mock" works with zero external credentials. "microsoft" / "real" are
     # the future production providers — see app/providers/factory.py.
     data_source: Literal["mock", "microsoft"] = "mock"
+
+    # What i added
+
+
+    outlook_live_inbox: bool = False
+
+
     ai_provider: Literal["mock", "real"] = "mock"
     powerbi_provider: Literal["mock", "real"] = "mock"
     notification_provider: Literal["mock", "real"] = "mock"
