@@ -1,0 +1,44 @@
+services:
+  - type: web
+    name: spikeos-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: DEBUG
+        value: "false"
+      - key: FRONTEND_URL
+        sync: false
+      - key: OUTLOOK_ADDIN_URL
+        sync: false
+      - key: DATA_SOURCE
+        value: mock
+      - key: AI_PROVIDER
+        value: mock
+      - key: POWERBI_PROVIDER
+        value: mock
+      - key: NOTIFICATION_PROVIDER
+        value: mock
+      - key: ANALYTICS_PROVIDER
+        value: mock
+      - key: DATABASE_URL
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SECRET_KEY
+        sync: false
+      - key: MICROSOFT_TENANT_ID
+        sync: false
+      - key: MICROSOFT_CLIENT_ID
+        sync: false
+      - key: MICROSOFT_CLIENT_SECRET
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-5.6-mini
+      - key: JWT_SECRET
+        generateValue: true
+    healthCheckPath: /health

@@ -1,0 +1,21 @@
+# Local development convenience only — NOT used for Vercel or Render
+# deployment, which each build their own directory independently (see
+# docs/DEPLOYMENT.md). This does not include the frontend; run that with
+# `cd frontend && npm run dev` so hot reload works the way Next.js expects.
+services:
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      APP_ENV: development
+      DEBUG: "true"
+      FRONTEND_URL: http://localhost:3000
+      DATA_SOURCE: mock
+      AI_PROVIDER: mock
+      POWERBI_PROVIDER: mock
+      NOTIFICATION_PROVIDER: mock
+      ANALYTICS_PROVIDER: mock
+      PORT: 8000
